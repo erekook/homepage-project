@@ -1,0 +1,15 @@
+:root {
+    font-size: 0.75em;
+}
+
+@media (min-width: 300px) {
+     :root {
+        font-size: 0.85em;
+    }
+}
+
+@media (min-width: 1200px) {
+     :root {
+        font-size: 1em;
+    }
+}
