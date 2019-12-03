@@ -1,15 +1,28 @@
 :root {
     font-size: 0.75em;
+    width: 100%;
+    height: 100%;
 }
 
 @media (min-width: 300px) {
      :root {
         font-size: 0.85em;
+        width: 100%;
+        height: 100%;
     }
 }
 
 @media (min-width: 1200px) {
      :root {
         font-size: 1em;
+        width: 100%;
+        height: 100%;
     }
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
 }
