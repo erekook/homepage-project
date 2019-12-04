@@ -51,15 +51,15 @@ export default {
         animation: rotateY360 30s ease-in-out infinite;
     }
     .img {
-            width: 200px;
-            height: 150px;
-            line-height: 118px;
-            text-align: center;
-            position: absolute;
-            top: 160px;
-            left: 300px;
-            /* box-shadow: 0 0 20px rgba(0, 0, 0, 0.9) inset; */
-            /* background: pink; */
+        width: 200px;
+        height: 150px;
+        line-height: 118px;
+        text-align: center;
+        position: absolute;
+        top: 160px;
+        left: 300px;
+        /* box-shadow: 0 0 20px rgba(0, 0, 0, 0.9) inset; */
+        /* background: pink; */
     }
 
     .img-item {

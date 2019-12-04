@@ -3,6 +3,8 @@ import Home from '../pages/Home.vue'
 import LovePhotos from '../pages/xing/LovePhotos.vue'
 import LoveSwiper from '../pages/xing/LoveSwiper.vue'
 import HappyBirthday from '../pages/xing/HappyBirthday.vue'
+import LoveStory from '../pages/xing/LoveStory.vue'
+
 
 
 
@@ -15,5 +17,6 @@ export default new VueRouter({
         { path: '/xing/photos', name: LovePhotos.name, component: LovePhotos },
         { path: '/xing/swiper', name: LoveSwiper.name, component: LoveSwiper },
         { path: '/xing/happy-birthday', name: HappyBirthday.name, component: HappyBirthday },
+        { path: '/xing/love-story', name: LoveStory.name, component: LoveStory },
     ]
 })

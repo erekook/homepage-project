@@ -8,7 +8,7 @@
           <ul class="menu">
               <li>MY BLOGS</li>
               <li>TODOS</li>
-              <li @click="handleToPhoto">XING'S PHOTO</li>
+              <li @click="handleToStory">OUR LOVE STORY</li>
               <li>CONTACT ME</li>
           </ul>
       </div>
@@ -42,9 +42,9 @@ export default {
             let rand = parseInt(Math.random() * this.bgImgs.length, 10)
             this.bgImg = 'url(' + this.bgImgs[rand] + ')'
         },
-        handleToPhoto () {
+        handleToStory () {
             this.$router.push({
-                name: 'love-photo'
+                name: 'love-story'
             })
         },
         getQuote () {
