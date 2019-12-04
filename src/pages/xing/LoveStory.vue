@@ -70,7 +70,8 @@ export default {
             loveuShow: false,
             nextShow: false,
             loveDay: null,
-            time: [0, 0, 0, 0]
+            time: [0, 0, 0, 0],
+            typeInterval: null
         }
     },
     mounted () {
@@ -88,6 +89,11 @@ export default {
         }, 500);
 
         this.typewriter()
+    },
+    destroyed () {
+        if (this.typeInterval) {
+            clearInterval(this.typeInterval)
+        }
     },
     methods: {
         initFlower () {
@@ -142,7 +148,7 @@ export default {
             let codeHtml = document.getElementById("code").innerHTML
             let b = 0;
             document.getElementById("code").innerHTML = ""
-            var e = setInterval(function() {
+            this.typeInterval = setInterval(function() {
                 var f = codeHtml.substr(b, 1);
                 if (f == "<") {
                     b = codeHtml.indexOf(">", b) + 1
@@ -150,7 +156,7 @@ export default {
                     b++
                 }
                 document.getElementById("code").innerHTML = codeHtml.substring(0, b) + (b & 1 ? "_" : "")
-                if (b >= codeHtml.length) { clearInterval(e) }
+                if (b >= codeHtml.length) { clearInterval(this.typeInterval) }
             }, 75)
         },
         getHeartPoint (c) {
@@ -186,7 +192,7 @@ export default {
             this.$router.push({
                 name: 'love-photo'
             })
-        }
+        },
     }
 }
 </script>

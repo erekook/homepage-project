@@ -16,7 +16,9 @@ axios.defaults.baseURL = 'http://127.0.0.1:5000'
 Vue.use(VueAwesomeSwiper)
 Vue.use(VueAxios, axios)
 Vue.use(VueRouter)
-
+Vue.prototype.$imageUrl = (imgName) => {
+    return `https://longjietan-1300838300.cos.ap-chengdu.myqcloud.com/${imgName}`
+}
 new Vue({
     router,
     render: h => h(App),

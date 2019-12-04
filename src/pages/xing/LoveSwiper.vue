@@ -3,7 +3,7 @@
     <div class="container">
             <swiper :options="swiperOption">
                 <swiper-slide v-for="n in 19" :key="n">
-                    <img class="img-item" :src="require('../../assets/images/love_photos/list-photo' + n + '.jpg')" alt="">
+                    <img class="img-item" :src="$imageUrl('list-photo'+n+'.jpg')" alt="">
                     <p class="img-tip">{{imgTips[n-1]}}</p>
                 </swiper-slide>
                 <div class="swiper-pagination" slot="pagination"></div>

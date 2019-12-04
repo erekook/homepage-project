@@ -5,7 +5,7 @@
             <div class="photo-wrap">  <!-- 舞台 -->
                 <div class="container">   <!-- 相册容器 -->
                     <div v-for="n in 9" :key="n"  :class="'img0' + n + ' img'">
-                        <img class="img-item" :src="require('../../assets/images/love_photos/photo' + n + '.jpg')" alt="">
+                        <img class="img-item" :src="$imageUrl('photo'+n+'.jpg')" alt="">
                     </div>
                 </div>
             </div>
