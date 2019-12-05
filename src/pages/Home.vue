@@ -64,47 +64,67 @@ export default {
 .home {
     width: 100%;
     height: 100%;
-    overflow: hidden;
+    /* overflow: hidden; */
     text-align: center;
     background-size: cover;
     background-repeat: no-repeat;
+    padding-top: 1px;
 
 }
-.quote {
-    width: 60%;
-    height: auto;
-    margin: 2em auto;
-    font-size: 2rem;
-    color: #ffffff;
-    font-weight: bold;
-    background: rgba(0, 0, 0, .4);
-    border-radius: 10px;
-    padding: .5em 0;
-}
 
-.container {
-    width: 40%;
-    /* height: 20em; */
-    margin: 0 auto;
-    background: rgba(0, 0, 0, .4);
-    border-radius: 20px;
-    padding: 0.5em;
-}
-
-@media (min-width: 300px) {
+@media (min-width: 1200px) {
     .container {
-        width: 60%;
+        width: 50%;
+        /* height: 20em; */
         margin: 0 auto;
         background: rgba(0, 0, 0, .4);
         border-radius: 20px;
         padding: 0.5em;
     }
+    .quote {
+        width: 50%;
+        height: auto;
+        margin: 2em auto;
+        font-size: 2rem;
+        color: #ffffff;
+        font-weight: bold;
+        background: rgba(0, 0, 0, .4);
+        border-radius: 10px;
+        padding: .5em 0;
+    }
+    h2 {
+        font-size: 2.5rem;
+        color: #ffffff;
+    }
 }
 
-h2 {
-    font-size: 2.5em;
-    color: #ffffff;
+
+@media (max-width: 400px) {
+    .container {
+        width: 80%;
+        margin: 0 auto;
+        background: rgba(0, 0, 0, .4);
+        border-radius: 20px;
+        padding: 0.5em;
+    }
+    .quote {
+        width: 85%;
+        height: auto;
+        margin: 2em auto;
+        font-size: 2rem;
+        color: #ffffff;
+        font-weight: bold;
+        background: rgba(0, 0, 0, .4);
+        border-radius: 10px;
+        padding: .5em 0;
+    }
+    h2 {
+        font-size: 2rem;
+        color: #ffffff;
+    }
 }
+
+
 
 .menu {
     list-style: none;

@@ -71,34 +71,77 @@ export default {
 </script>
 
 <style scoped>
-    /* .container {
-        width: 800px;
-        height: 500px;
-        margin: 5em auto;
-    } */
-    .swiper-inner {
-        position: relative;
+    .container {
+        width: 100%;
+        height: 100%;
         overflow: hidden;
-        height: 700px;
-        padding: 15px;
     }
-    .swiper-container {
-        width: 600px!important;
-        height: 700px;
-        position: absolute;
-        left: 46%;
-        top: 20%;
-        margin-left: -150px;
-        margin-top: -150px;
-    }
-    .swiper-slide {
-        background-position: center;
-        background-size: cover;
+    @media screen and (min-width: 1200px) {
+        .swiper-inner {
+            position: relative;
+            overflow: hidden;
+            height: 700px;
+            padding: 15px;
+        }
+        .swiper-container {
+            width: 600px!important;
+            height: 700px;
+            position: absolute;
+            left: 46%;
+            top: 20%;
+            margin-left: -150px;
+            margin-top: -150px;
+        }
+        .swiper-slide {
+            background-position: center;
+            background-size: cover;
+        }
+
+        .swiper-pagination {
+            bottom: -50px;
+        }
+        .next-page {
+            position: absolute;
+            top:85%;
+            left: 50%;
+            text-align: center;
+            color: #E64725;
+        }
     }
 
-    .swiper-pagination {
-        bottom: -50px;
+    @media screen and (max-width: 400px) {
+        .swiper-inner {
+            position: relative;
+            overflow: hidden;
+            height: 80%;
+            padding: 1.5em;
+        }
+        .swiper-container {
+            width: 90%!important;
+            height: 30em;
+            position: absolute;
+            left: 46%;
+            top: 20%;
+            margin-left: -150px;
+            margin-top: -150px;
+        }
+        .swiper-slide {
+            background-position: center;
+            background-size: cover;
+        }
+
+        .swiper-pagination {
+            bottom: -50px;
+        }
+        .next-page {
+            position: absolute;
+            top: 30em;
+            left: 40%;
+            text-align: center;
+            color: #E64725;
+        }
     }
+   
     .img-item {
         display: block;
         width: 100%;
@@ -111,11 +154,5 @@ export default {
         text-align: center;
     }
     
-    .next-page {
-        position: absolute;
-        top:85%;
-        left: 50%;
-        text-align: center;
-        color: #E64725;
-    }
+
 </style>

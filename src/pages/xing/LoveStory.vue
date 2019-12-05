@@ -66,9 +66,9 @@ export default {
             offsetX: 0,
             offsetY: 0,
             garden: null,
-            messageShow: false,
-            loveuShow: false,
-            nextShow: false,
+            messageShow: true,
+            loveuShow: true,
+            nextShow: true,
             loveDay: null,
             time: [0, 0, 0, 0],
             typeInterval: null
@@ -77,18 +77,18 @@ export default {
     mounted () {
         let that = this
         this.initLoveDay()
-        // that.initFlower()
+        that.initFlower()
 
-        setTimeout(function () {
-            that.initFlower()
-        }, 5000)
+        // setTimeout(function () {
+        //     that.initFlower()
+        // }, 5000)
 
         this.timeElapse(this.loveDay)
-        setInterval(function () {
-			that.timeElapse(that.loveDay);
-        }, 500);
+        // setInterval(function () {
+		// 	that.timeElapse(that.loveDay);
+        // }, 500);
 
-        this.typewriter()
+        // this.typewriter()
     },
     destroyed () {
         if (this.typeInterval) {
@@ -206,66 +206,150 @@ export default {
         width:100%;
         height:100%
     }
-    #loveHeart{
-        float:left;
-        width:670px;
-        height:625px;
-        margin-top: 10em;
-        margin-left: 10em;
+
+    @media screen and (min-width: 1200px) {
+        #code{
+            float:left;
+            width:440px;
+            height:400px;
+            color:#333;
+            font-family:"Consolas","Monaco","Bitstream Vera Sans Mono","Courier New","sans-serif";
+            font-size:12px;
+            margin-top: 20em;
+            margin-left: 30em;
+        }
+        #loveHeart{
+            float:left;
+            width:670px;
+            height:625px;
+            margin-top: 10em;
+            margin-left: 10em;
+        }
+        #words{
+            font-family:"sans-serif";
+            width:500px;
+            height: 500px;
+            font-size:2rem;
+            color:#666;
+            position: absolute;
+            top: 10em;
+            left: 57%;
+        }
+        #loveu{
+            padding:5px;
+            font-size: 1.5rem;
+            margin-top: 2.5em;
+            margin-right: 5.5em;
+            text-align:right;
+        }
+        #loveu .signature{
+            margin-top:10px;
+            font-size:20px;
+            font-style:italic;
+        }
+        #elapseClock{
+            text-align:right;
+            font-size: 1rem;
+            margin-top:10px;
+            margin-bottom:10px;
+            padding-right: 10px;
+        }
+        #elapseClock .digit{
+            font-family:"digit";
+            font-size: 2rem;
+        }
+        .next-page {
+            position: absolute;
+            top: 40%;
+            right: 50px;;
+            text-align: center;
+            color: #E64725;
+        }
     }
+    @media screen and (max-width: 400px) {
+        #content {
+            width:100%;
+            height:100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        #code{
+            width:85%;
+            /* height:100em; */
+            color:#333;
+            font-family:"Consolas","Monaco","Bitstream Vera Sans Mono","Courier New","sans-serif";
+            font-size: .5rem;
+            margin-top: 5em;
+        }
+        #loveHeart{
+            width: 80%;
+            height: 500px;
+            /* height: 280em; */
+            margin-top: 5em;
+            position: relative;
+        }
+        #words{
+            font-family:"sans-serif";
+            width: 85%;
+            /* height: 100em; */
+            font-size: 1rem;
+            color:#666;
+            position: absolute;
+            top: 2em;
+            left: 1.5em;
+        }
+        #loveu{
+            padding:5px;
+            font-size: 1rem;
+            /* margin-top: 2.5em;
+            margin-right: 5.5em; */
+            text-align:right;
+        }
+        #loveu .signature{
+            margin-top: .8em;
+            font-size: 1.5rem;
+            font-style:italic;
+        }
+        #elapseClock{
+            text-align:right;
+            font-size: 1rem;
+            margin-top: 1em;
+            margin-bottom: 1em;
+            /* padding-right: 1em; */
+        }
+        #elapseClock .digit{
+            font-family:"digit";
+            font-size: 1.5rem;
+        }
+        .next-page {
+            /* position: absolute;
+            top: 40%;
+            right: 50px;; */
+            text-align: center;
+            color: #E64725;
+            margin-top: 2em;
+        }
+    }
+
+
+
     #garden{
         width:100%;
         height:100%;
     }
-    #elapseClock{
-        text-align:right;
-        font-size:18px;
-        margin-top:10px;
-        margin-bottom:10px;
-        padding-right: 10px;
-    }
-    #words{
-        font-family:"sans-serif";
-        width:500px;
-        height: 500px;
-        font-size:24px;
-        color:#666;
-        position: absolute;
-        top: 14em;
-        left: 57%;
-    }
+
+
     /* #messages{
         display:none
     } */
-    #elapseClock .digit{
-        font-family:"digit";
-        font-size:36px;
-    }
-    #loveu{
-        padding:5px;
-        font-size:22px;
-        margin-top:50px;
-        margin-right:120px;
-        text-align:right;
-    }
-    #loveu .signature{
-        margin-top:10px;
-        font-size:20px;
-        font-style:italic;
-    }
+
+
+
     #clickSound{
         display:none;
     }
-    #code{
-        float:left;
-        width:440px;
-        height:400px;
-        color:#333;
-        font-family:"Consolas","Monaco","Bitstream Vera Sans Mono","Courier New","sans-serif";
-        font-size:12px;
-        margin-top: 20em;
-        margin-left: 30em;
-    }
+
     #code .string{
         color:#2a36ff;
     }
@@ -307,11 +391,5 @@ export default {
         opacity: 0;
     }
 
-    .next-page {
-        position: absolute;
-        top: 40%;
-        right: 50px;;
-        text-align: center;
-        color: #E64725;
-    }
+
 </style>

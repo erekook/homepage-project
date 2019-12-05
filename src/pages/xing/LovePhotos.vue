@@ -33,34 +33,80 @@ export default {
 </script>
 
 <style scoped>
-    .my-container {        
-        width: 800px;
-        height: 500px;
-        margin: 20px auto;
+    @media screen and (min-width: 1200px) {
+         .my-container {        
+            width: 800px;
+            height: 500px;
+            margin: 20px auto;
+        }
+        .photo-wrap {
+            perspective: 800px;
+            width: 800px;
+        }
+        .container {
+            width: 800px;
+            height: 500px;
+            margin: 0 auto;
+            position: relative;
+            transform-style: preserve-3d;
+            animation: rotateY360 30s ease-in-out infinite;
+        }
+        .img {
+            width: 200px;
+            height: 150px;
+            line-height: 118px;
+            text-align: center;
+            position: absolute;
+            top: 160px;
+            left: 300px;
+            /* box-shadow: 0 0 20px rgba(0, 0, 0, 0.9) inset; */
+            /* background: pink; */
+        }
+        .next-page {
+            text-align: center;
+            color: #E64725;
+        }
     }
-    .photo-wrap {
-        perspective: 800px;
-        width: 800px;
+
+    @media screen and (max-width: 400px) {
+         .my-container {        
+            width: 100%;
+            height: 30em;
+            margin: 2em auto;
+            overflow: hidden;
+        }
+        .photo-wrap {
+            perspective: 300em;
+            width: 100%;
+            height: 100%;
+        }
+        .container {
+            width: 80%;;
+            height: 30em;
+            margin: 0 auto;
+            position: relative;
+            transform-style: preserve-3d;
+            animation: rotateY360 30s ease-in-out infinite;
+        }
+        .img {
+            width: 50%;
+            height: 15em;
+            line-height: 118px;
+            text-align: center;
+            position: absolute;
+            top: 10em;
+            /* left: 300px; */
+            /* box-shadow: 0 0 20px rgba(0, 0, 0, 0.9) inset; */
+            /* background: pink; */
+        }
+        .next-page {
+            position: absolute;
+            text-align: center;
+            color: #E64725;
+            top: 30em;
+        }
     }
-    .container {
-        width: 800px;
-        height: 500px;
-        margin: 0 auto;
-        position: relative;
-        transform-style: preserve-3d;
-        animation: rotateY360 30s ease-in-out infinite;
-    }
-    .img {
-        width: 200px;
-        height: 150px;
-        line-height: 118px;
-        text-align: center;
-        position: absolute;
-        top: 160px;
-        left: 300px;
-        /* box-shadow: 0 0 20px rgba(0, 0, 0, 0.9) inset; */
-        /* background: pink; */
-    }
+   
 
     .img-item {
         display: block;
