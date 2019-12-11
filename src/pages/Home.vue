@@ -1,17 +1,21 @@
 <template>
   <div class="home" :style="{ backgroundImage: bgImg }">
-      <div class="quote">
-          {{quote}}
-      </div>
-      <div class="container">
-          <h2>LONGJIETAN'S WEBSITE</h2>
-          <ul class="menu">
-              <li>MY BLOGS</li>
-              <li>TODOS</li>
-              <li @click="handleToStory">OUR LOVE STORY</li>
-              <li>CONTACT ME</li>
-          </ul>
-      </div>
+        <el-alert v-show="errShow"
+            title="网络好像开小差了"
+            type="error">
+        </el-alert>
+        <div class="quote">
+            {{quote}}
+        </div>
+        <div class="container">
+            <h2>LONGJIETAN'S WEBSITE</h2>
+            <ul class="menu">
+                <li>MY BLOGS</li>
+                <li>TODOS</li>
+                <li @click="handleToStory">OUR LOVE STORY</li>
+                <li>CONTACT ME</li>
+            </ul>
+        </div>
   </div>
 </template>
 
@@ -19,12 +23,15 @@
 import bgImage01 from '../assets/images/bg_nesSimpleDesktop.png'
 import bgImage02 from '../assets/images/bg_block_search.png'
 import bgImage03 from '../assets/images/bg_Ink_Bottle_Droplets.png'
+import api from '../config/api'
+import { get } from '../utils/http'
 
 export default {
     name: 'home',
     data () {
         return {
-            quote: '恭祝我幸宝生日啦~爱你',
+            quote: 'HAVE A NICE DAY!',
+            errShow: false,
             bgImgs: [
                 bgImage01,
                 bgImage02,
@@ -35,7 +42,7 @@ export default {
     },
     mounted () {
         this.initBG()
-        // this.getQuote()
+        this.getQuote()
     },
     methods: {
         initBG () {
@@ -48,12 +55,10 @@ export default {
             })
         },
         getQuote () {
-            this.$http.get('/api/v1/quote/quotes')
+            let _this = this
+            get(api.getRandQuote)
                 .then((res) => {
-                    console.log(res)
-                    this.quote = res.data
-                }, err => {
-                    console.log(err)
+                    _this.quote = res.data.content
                 })
         },
     }
@@ -72,7 +77,7 @@ export default {
 
 }
 
-@media (min-width: 1200px) {
+@media (min-width: 400px) {
     .container {
         width: 50%;
         /* height: 20em; */

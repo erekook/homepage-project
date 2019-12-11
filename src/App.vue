@@ -2,7 +2,7 @@
   <div id="app">
     <!-- <img alt="Vue logo" src="./assets/logo.png">
     <HelloWorld msg="Welcome to Your Vue.js App"/> -->
-    <audio id="audio" autoplay :src="require('./assets/media/ainibushiliangsantian.mp3')"></audio>
+    <!-- <audio id="audio" autoplay :src="require('./assets/media/ainibushiliangsantian.mp3')"></audio> -->
     <router-view name="default"></router-view>
   </div>
 </template>
