@@ -22,7 +22,7 @@
               v-model="code"
               clearable>
             </el-input>
-            <el-button type="primary" @click="handleLogin">发送验证码</el-button>
+            <el-button :disabled="sendBtnDisable" type="primary" @click="handleSendCode">{{sendBtnTxt}}</el-button>
         </div>
         <div class="input-item">
             <label>密码</label>
@@ -38,13 +38,16 @@
               show-password>
             </el-input>
         </div>
-        <el-button type="primary" @click="handleLogin">提交</el-button>
+        <el-button type="primary" @click="handleSubmit">提交</el-button>
       </div>
 
   </div>
 </template>
 
 <script>
+import { isEmail } from '../../utils/validation'
+import { get, post } from '../../utils/http'
+import api from '../../config/api'
 export default {
     name: 'register',
     data () {
@@ -54,8 +57,66 @@ export default {
             email: '',
             code: '',
             pwd: '',
-            cPwd: ''
+            cPwd: '',
+            sendBtnTxt: '发送验证码',
+            time: 60,
+            sendBtnDisable: false
         }
+    },
+    methods: {
+      closeErr () {
+        this.errShow = false
+      },
+      handleSendCode () {
+        let _this = this
+        if (!this.email) {
+            this.errorMsg = '请输入邮箱地址'
+            this.errShow = true
+            return
+        }
+        if (!isEmail(this.email)) {
+            this.errorMsg = '请输入正确的邮箱地址'
+            this.errShow = true
+            return
+        }
+        get(api.sendEmailCode(this.email)).then(() => {
+          _this.$message({
+            showClose: true,
+            message: '发送成功',
+            type: 'success'
+          });
+           _this.sendBtnDisable = true
+          let interval = setInterval(function () {
+            _this.time = _this.time -1
+            _this.sendBtnTxt = _this.time + 's'
+            if (_this.time === 0) {
+              clearInterval(interval)
+              _this.time = 60
+              _this.sendBtnTxt = '发送验证码'
+              _this.sendBtnDisable = false
+            } 
+          }, 1000)
+        })
+       
+      },
+
+      handleSubmit () {
+        let _this = this
+        let param = {
+          email: this.email,
+          code: this.code,
+          pwd: this.pwd,
+          confirm_pwd: this.cPwd
+        }
+        post(api.register, param).then((res) => {
+          console.log(res)
+          _this.$message({
+            showClose: true,
+            message: '注册成功',
+            type: 'success'
+          });
+        })
+      }
     }
 } 
 </script>
