@@ -109,12 +109,13 @@ export default {
           confirm_pwd: this.cPwd
         }
         post(api.register, param).then((res) => {
-          console.log(res)
+          this.$store.commit('auth/setUserToken', res.data)
           _this.$message({
             showClose: true,
             message: '注册成功',
             type: 'success'
-          });
+          })
+          this.$router.replace('/')
         })
       }
     }

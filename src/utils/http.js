@@ -48,7 +48,7 @@ instance.interceptors.request.use(config => {
 /** 添加响应拦截器  **/
 instance.interceptors.response.use(response => {
     loadingInstance.close()
-        // console.log('response', response)
+        // 这里是请求成功了
     if (response.data.code === 0) { // 响应结果里的code, 是前端与后台的约定
         return Promise.resolve(response.data)
     } else {
@@ -56,7 +56,7 @@ instance.interceptors.response.use(response => {
             message: response.data.msg,
             type: 'error'
         })
-        return Promise.reject(response.data.message)
+        return Promise.reject(response.data)
     }
 }, error => {
     loadingInstance.close()

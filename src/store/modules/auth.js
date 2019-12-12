@@ -2,7 +2,10 @@ import { post } from '../../utils/http'
 import api from '../../config/api'
 
 const state = {
-    token: ''
+    token: '',
+    user: {
+        email: ''
+    }
 }
 
 const getters = {
@@ -11,6 +14,11 @@ const getters = {
             return true
         } else {
             return false
+        }
+    },
+    userInfo: (state) => {
+        if (state.user) {
+            return state.user
         }
     }
 }
@@ -33,14 +41,18 @@ const actions = {
 }
 
 const mutations = {
-    setUserToken(state, token) {
-        window.localStorage.setItem("token", token)
-        state.token = token
+    setUserToken(state, data) {
+        window.localStorage.setItem("token", data.token)
+        window.localStorage.setItem("user", data.user)
+        state.token = data.token
+        state.user = data.user
     },
     loadUserToken(state) {
         let token = window.localStorage.getItem('token')
-        if (token) {
+        let user = window.localStorage.getItem('user')
+        if (token && user) {
             state.token = token
+            state.user = user
         }
     }
 }

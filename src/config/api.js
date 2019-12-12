@@ -6,7 +6,9 @@ export default {
 
     register: 'api/v1/admin/register',
 
-    sendEmailCode: function (email) {
+    sendEmailCode: function(email) {
         return `/api/v1/admin/send-email-code/${email}`
-    }
+    },
+
+    fetchAllBlogs: 'api/v1/blog/blogs'
 }

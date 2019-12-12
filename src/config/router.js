@@ -7,6 +7,7 @@ import LovePhotos from '../pages/xing/LovePhotos.vue'
 import LoveSwiper from '../pages/xing/LoveSwiper.vue'
 import HappyBirthday from '../pages/xing/HappyBirthday.vue'
 import LoveStory from '../pages/xing/LoveStory.vue'
+import Blog from '../pages/blog/Blog.vue'
 
 
 
@@ -19,6 +20,8 @@ const router = new VueRouter({
         { path: '/', name: 'home', component: Home },
         { path: '/login', name: Login.name, component: Login, meta: { noAuth: true } },
         { path: '/register', name: Register.name, component: Register, meta: { noAuth: true } },
+        // about blog
+        { path: '/blog', name: Blog.name, component: Blog },
         // about xing
         { path: '/xing/photos', name: LovePhotos.name, component: LovePhotos },
         { path: '/xing/swiper', name: LoveSwiper.name, component: LoveSwiper },
@@ -30,7 +33,6 @@ const router = new VueRouter({
 router.beforeEach((to, from, next) => {
     // auth模块加了namespaced属性，所有store.getters.isLogin是访问不到的
     if (store.getters['auth/isLogin'] || to.matched.some(record => record.meta.noAuth)) {
-        console.log('next')
         next()
     } else {
         next({

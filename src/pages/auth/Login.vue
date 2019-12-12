@@ -31,9 +31,9 @@
 </template>
 
 <script>
-// import { post } from '../../utils/http'
+import { post } from '../../utils/http'
 import { isEmail } from '../../utils/validation'
-// import api from '../../config/api'
+import api from '../../config/api'
 
 export default {
     name: 'login',
@@ -41,8 +41,8 @@ export default {
       return {
         errShow: false,
         errorMsg: '',
-        email: '',
-        pwd: ''
+        email: 'longjietan@163.com',
+        pwd: '123'
       }
     },
     methods: {
@@ -71,19 +71,24 @@ export default {
             this.errShow = true
             return
         }
-        // let param = {
-        //   email: this.email,
-        //   pwd: this.pwd
-        // }
-        // this.$store.dispatch('auth/userLogin', param)
-        if (this.$route.query.redirect) {
-          this.$router.replace({
-            url: '/'
-          })
-          // this.$router.replace(this.$route.query.redirect)
-        } else {
-          this.$router.replace('/')
+        let param = {
+          email: this.email,
+          pwd: this.pwd
         }
+        post(api.login, param).then((res) => {
+            let data = res.data
+            if (data) {
+              this.$store.commit('auth/setUserToken', data)
+              if (this.$route.query.redirect) {
+                this.$router.replace({
+                  path: this.$route.query.redirect
+                })
+              } else {
+                this.$router.replace('/')
+              }
+            }
+        })
+       
       }
     }
 }

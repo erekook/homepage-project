@@ -10,7 +10,7 @@
         <div class="container">
             <h2>LONGJIETAN'S WEBSITE</h2>
             <ul class="menu">
-                <li>MY BLOGS</li>
+                <li @click="handleToBlog">MY BLOGS</li>
                 <li>TODOS</li>
                 <li @click="handleToStory">OUR LOVE STORY</li>
                 <li>CONTACT ME</li>
@@ -48,6 +48,11 @@ export default {
         initBG () {
             let rand = parseInt(Math.random() * this.bgImgs.length, 10)
             this.bgImg = 'url(' + this.bgImgs[rand] + ')'
+        },
+        handleToBlog () {
+            this.$router.push({
+                name: 'blog'
+            })
         },
         handleToStory () {
             this.$router.push({
