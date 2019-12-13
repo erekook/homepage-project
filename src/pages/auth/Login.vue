@@ -41,8 +41,8 @@ export default {
       return {
         errShow: false,
         errorMsg: '',
-        email: 'longjietan@163.com',
-        pwd: '123'
+        email: '',
+        pwd: ''
       }
     },
     methods: {

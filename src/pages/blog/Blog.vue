@@ -49,7 +49,7 @@ export default {
     },
     methods: {
         handleGotoDetail (e) {
-            console.log(e)
+            this.$router.push('/blog-detail/'+e)
         },
         handleSelect () {
             console.log('1')
