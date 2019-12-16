@@ -1,7 +1,11 @@
 <template>
     <div class="post">
         <div class="post-title"><a @click="handleBlogDetail(blog.id)">{{blog.title}}</a></div>
-        <div class="post-info">{{blog.create_time}}</div>
+        <div class="post-info">
+            <i class="el-icon-s-flag"></i>分类: <a style="color:orange" href="">{{blog.category.cate_name}}</a>
+            <!-- <i class="el-icon-collection-tag"></i> -->
+        </div>
+        <div class="post-time">{{blog.create_time}} </div>
     </div>
 </template>
 
@@ -39,6 +43,11 @@ export default {
     } */
 
     .post-info {
+        font-size: 1rem;
+        margin-bottom: .8em;
+    }
+
+    .post-time {
         font-size: .8rem;
     }
 </style>

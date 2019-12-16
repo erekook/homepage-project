@@ -1,7 +1,7 @@
 <template>
   <div>
       <img class="login-icon" src="../../assets/images/gif_login_emjo.gif" alt="看啥子哟！">
-      <div class="login-container">
+      <div class="login-container" @keyup.enter="handleLogin">
         <el-alert
           v-show="errShow"
           @close="closeErr"
@@ -55,6 +55,7 @@ export default {
         })
       },
       handleLogin () {
+        console.log('login')
         // let _this = this
         if (!this.email) {
             this.errorMsg = '请输入邮箱地址'

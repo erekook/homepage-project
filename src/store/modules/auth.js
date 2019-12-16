@@ -3,9 +3,7 @@ import api from '../../config/api'
 
 const state = {
     token: '',
-    user: {
-        email: ''
-    }
+    user: null
 }
 
 const getters = {
@@ -26,9 +24,8 @@ const getters = {
 const actions = {
     async userLogin({ commit }, param) {
         await post(api.login, param).then((res) => {
-            let token = res.data.token
-            if (token) {
-                commit('setUserToken', token)
+            if (res.data) {
+                commit('setUserToken', res.data)
             }
         })
     },
@@ -42,8 +39,9 @@ const actions = {
 
 const mutations = {
     setUserToken(state, data) {
+        // localStorage 不能存对象，只能存储字符串
         window.localStorage.setItem("token", data.token)
-        window.localStorage.setItem("user", data.user)
+        window.localStorage.setItem("user", JSON.stringify(data.user))
         state.token = data.token
         state.user = data.user
     },
@@ -52,8 +50,15 @@ const mutations = {
         let user = window.localStorage.getItem('user')
         if (token && user) {
             state.token = token
-            state.user = user
+            state.user = JSON.parse(user)
         }
+    },
+    logout(state) {
+        window.localStorage.removeItem('token')
+        window.localStorage.removeItem('user')
+        state.token = ""
+        state.user = null
+
     }
 }
 

@@ -77,18 +77,17 @@ export default {
     mounted () {
         let that = this
         this.initLoveDay()
-        that.initFlower()
 
-        // setTimeout(function () {
-        //     that.initFlower()
-        // }, 5000)
+        setTimeout(function () {
+            that.initFlower()
+        }, 5000)
 
         this.timeElapse(this.loveDay)
-        // setInterval(function () {
-		// 	that.timeElapse(that.loveDay);
-        // }, 500);
+        setInterval(function () {
+			that.timeElapse(that.loveDay);
+        }, 500);
 
-        // this.typewriter()
+        this.typewriter()
     },
     destroyed () {
         if (this.typeInterval) {
