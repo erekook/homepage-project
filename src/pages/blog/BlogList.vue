@@ -47,8 +47,11 @@ export default {
             })
         },
         handleGotoDetail (e) {
-            this.$router.push('/blog-detail/'+e)
+            this.$router.push('/blog/blog-detail/'+e)
         },
+        handlePost () {
+          this.$router.push('/blog/blog-new')
+        }
     }
 }
 </script>
