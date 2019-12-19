@@ -1,6 +1,6 @@
 <template>
   <div>
-    <editor :height="300" v-model="content" :init="init" id='tinymce'></editor>
+    <editor v-model="content" :init="init" id='tinymce'></editor>
   </div>
 </template>
 
@@ -26,6 +26,7 @@ export default {
     },
     data () {
         return {
+            content: this.value,
             init: {
                 // language_url: `${this.baseUrl}/tinymce/langs/zh_CN.js`,
                 // language: 'zh_CN',
@@ -33,12 +34,11 @@ export default {
                 content_css: `/tinymce/skins/content/default/content.css`,
                 // skin_url: `${this.baseUrl}/tinymce/skins/ui/oxide-dark`, // 暗色系
                 // content_css: `${this.baseUrl}/tinymce/skins/content/dark/content.css`, // 暗色系
-                height: 300,
+                height: 400,
                 plugins: this.plugins,
                 toolbar: this.toolbar,
                 branding: false,
                 menubar: false,
-                content: this.value
                 // 此处为图片上传处理函数，这个直接用了base64的图片形式上传图片，
                 // 如需ajax上传可参考https://www.tiny.cloud/docs/configure/file-image-upload/#images_upload_handler
                 // images_upload_handler: (blobInfo, success, failure) => {
