@@ -13,9 +13,14 @@ export default {
         return `/api/v1/admin/send-email-code/${email}`
     },
 
-    // 获取所有博客
+    // get 获取所有博客 post 新增博客
     fetchAllBlogs: 'api/v1/blog/blogs',
+
+    fetchBlogById: function(id) {
+        return `api/v1/blog/${id}`
+    },
 
     // 获取所有博客分类
     fetchAllCategorys: 'api/v1/blog/categorys'
+
 }

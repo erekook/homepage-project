@@ -8,7 +8,7 @@ const instance = axios.create({ //创建axios实例，在这里可以设置请�
         timeout: 5000,
         baseURL: process.env.NODE_ENV === 'production' ? 'http://175.24.109.208:5050' : 'http://175.24.109.208:5050', //根据自己配置的反向代理去设置不同环境的baeUrl
         headers: {
-            token: sessionStorage.getItem('token') || ''
+            Authorization: window.localStorage.getItem('token') || ''
         }
     })
     // 文档中的统一设置post请求头。下面会说到post请求的几种'Content-Type'

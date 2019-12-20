@@ -50,9 +50,7 @@ export default {
             this.bgImg = 'url(' + this.bgImgs[rand] + ')'
         },
         handleToBlog () {
-            this.$router.push({
-                name: 'blog'
-            })
+            this.$router.push('blog/')
         },
         handleToStory () {
             this.$router.push({

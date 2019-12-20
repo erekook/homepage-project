@@ -1,15 +1,51 @@
 <template>
   <div>
-      {{this.$route.params.id}}
+      <h1>{{blogDetail.title}}</h1>
+      <div class="post-info">
+          <i class="el-icon-s-flag"></i>分类: <a style="color:orange;margin-right:.8em;">{{blogDetail.category.cate_name}}</a>
+          <i class="el-icon-collection-tag" style="margin-right:.5em;" v-for="tag in blogDetail.tags" :key="tag.id"><a style="color:blue;">{{tag.tag_name}}</a></i>
+      </div>
+      <div class="post-time">{{blogDetail.create_time}} </div>
+      <div v-html="blogDetail.content"></div>
   </div>
 </template>
 
 <script>
+import { get } from '../../utils/http'
+import api from '../../config/api'
 export default {
-    name: 'blog-detail'
+    name: 'blog-detail',
+    data () {
+      return {
+        blogDetail: null
+      }
+    },
+    mounted () {
+      this.getBlogDetail()
+    },
+    methods: {
+      getBlogDetail () {
+        get(api.fetchBlogById(this.$route.params.id)).then((res) => {
+          this.blogDetail = res.data
+        })
+      }
+    }
 }
 </script>
 
-<style>
+<style scoped>
+    .post-title {
+        font-size: 2rem;
+        margin-bottom: .5em;
+    }
 
+    .post-title a{
+        color: black;
+        text-decoration: none;
+        cursor: pointer;
+    }
+
+    .post-time {
+        font-size: .8rem;
+    }
 </style>
