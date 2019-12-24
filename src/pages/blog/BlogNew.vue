@@ -113,7 +113,7 @@ export default {
         if (this.tags.length > 0) {
           param.tag_names = this.tags
         }
-        post(api.fetchAllBlogs, param).then(() => {
+        post(api.addNewBlog, param).then(() => {
           _this.$router.go(-1)
         })
 

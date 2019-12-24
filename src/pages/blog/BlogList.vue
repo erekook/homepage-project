@@ -1,21 +1,22 @@
 <template>
    <el-row :gutter="20">
-        <el-col :span="16">
+        <el-col :span="isMobile ? 24 : 16">
             <div style="width:100%;height:3em;">
                 <el-button style="float:right;" type="primary" @click="handlePost">发布</el-button>
             </div>
             <div class="blog-list">
-                <blog-item v-for="blog in blogs" :key="blog.id" :blog="blog" @handleGoToBlogDetail="handleGotoDetail"></blog-item>
+                <blog-item v-for="blog in blogs" :key="blog.id" :blog="blog" @handleGoToBlogDetail="handleGotoDetail" @handleDelBlog="handleDelBlog"></blog-item>
             </div>
             <!-- 分页 -->
             <el-pagination
                 :current-page="page"
                 layout="prev, pager, next"
-                :page-size="10"
-                :total="1" hide-on-single-page>
+                :page-size="5"
+                :total="total" hide-on-single-page
+                @current-change="currentChange">
             </el-pagination>
         </el-col>
-        <el-col :span="8">
+        <el-col v-if="!isMobile" :span="8">
             阅读排行cxxxx
         </el-col>
     </el-row>
@@ -25,13 +26,16 @@
 import { get } from '../../utils/http'
 import api from '../../config/api'
 import BlogItem from './BlogItem'
+import { MessageBox,Toast } from 'mint-ui';
 
 export default {
     name: 'blog-list',
     data () {
         return {
             blogs: [],
-            page: 1
+            page: 1,
+            total: 0,
+            isMobile: this.$store.getters['common/isMobile']
         }
     },
     mounted () {
@@ -41,13 +45,53 @@ export default {
         BlogItem
     },
     methods: {
+        currentChange (page) {
+          this.page = page
+          this.getBlogs()
+        },
         getBlogs () {
-            get(api.fetchAllBlogs).then((res) => {
-                this.blogs = res.data
+            get(api.fetchAllBlogs(this.page)).then((res) => {
+                this.blogs = res.data.blogs
+                this.total = res.data.total
             })
         },
         handleGotoDetail (e) {
             this.$router.push('/blog/blog-detail/'+e)
+        },
+        handleDelBlog (id) {
+            let _this = this
+            if (this.isMobile) {
+              MessageBox.confirm('此操作将删除该文章, 是否继续?').then(action => {
+                console.log('action',action)
+                get(api.delBlog(id)).then(() => {
+                  _this.getBlogs()
+                  Toast({
+                    message: '删除成功',
+                    iconClass: 'icon icon-success'
+                  });
+                })
+              })
+            } else {
+              this.$confirm('此操作将删除该文章, 是否继续?', '提示', {
+                confirmButtonText: '确定',
+                cancelButtonText: '取消',
+                type: 'warning'
+              }).then(() => {
+                get(api.delBlog(id)).then(() => {
+                  _this.getBlogs()
+                  _this.$message({
+                    showClose: true,
+                    message: '删除成功',
+                    type: 'success'
+                  })
+                })
+              }).catch(() => {
+                this.$message({
+                  type: 'info',
+                  message: '已取消删除'
+                });          
+              });
+            }
         },
         handlePost () {
           this.$router.push('/blog/blog-new')

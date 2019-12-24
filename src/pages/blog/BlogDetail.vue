@@ -1,11 +1,12 @@
 <template>
   <div>
+      <!-- {{blogDetail}} -->
       <h1>{{blogDetail.title}}</h1>
       <div class="post-info">
-          <i class="el-icon-s-flag"></i>分类: <a style="color:orange;margin-right:.8em;">{{blogDetail.category.cate_name}}</a>
+          <i class="el-icon-s-flag"></i>分类: <a style="color:orange;margin-right:.8em;">{{blogDetail.cate_name}}</a>
           <i class="el-icon-collection-tag" style="margin-right:.5em;" v-for="tag in blogDetail.tags" :key="tag.id"><a style="color:blue;">{{tag.tag_name}}</a></i>
       </div>
-      <div class="post-time">{{blogDetail.create_time}} </div>
+      <div class="post-time">{{blogDetail.create_time}}</div>
       <div v-html="blogDetail.content"></div>
   </div>
 </template>
@@ -17,7 +18,7 @@ export default {
     name: 'blog-detail',
     data () {
       return {
-        blogDetail: null
+        blogDetail: ''
       }
     },
     mounted () {
@@ -25,8 +26,9 @@ export default {
     },
     methods: {
       getBlogDetail () {
-        get(api.fetchBlogById(this.$route.params.id)).then((res) => {
-          this.blogDetail = res.data
+        let _this = this
+        get(api.fetchBlogById(_this.$route.params.id)).then((res) => {
+          _this.blogDetail = res.data
         })
       }
     }
@@ -46,6 +48,8 @@ export default {
     }
 
     .post-time {
+        margin-top: .8em;
+        color: #999999;
         font-size: .8rem;
     }
 </style>

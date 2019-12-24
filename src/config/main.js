@@ -7,8 +7,9 @@ import VueRouter from 'vue-router'
 // import VueAxios from 'vue-axios'
 import '../assets/css/app.css'
 import VueAwesomeSwiper from 'vue-awesome-swiper'
-import ElementUI from 'element-ui';
-import 'element-ui/lib/theme-chalk/index.css';
+import ElementUI from 'element-ui'
+import 'element-ui/lib/theme-chalk/index.css'
+import Mint from 'mint-ui';
 
 // require styles
 import 'swiper/dist/css/swiper.css'
@@ -16,11 +17,14 @@ import 'swiper/dist/css/swiper.css'
 Vue.config.productionTip = false
     // 相对路径设置
     // axios.defaults.baseURL = 'http://127.0.0.1:5000'
+Vue.use(Mint)
 Vue.use(ElementUI)
 Vue.use(VueAwesomeSwiper)
     // Vue.use(VueAxios, axios)
 Vue.use(VueRouter)
 
+
+store.commit('common/checkIsMobile')
 store.dispatch('auth/getToken')
 Vue.prototype.$imageUrl = (imgName) => {
     return `https://longjietan-1300838300.cos.ap-chengdu.myqcloud.com/${imgName}`

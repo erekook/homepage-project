@@ -13,6 +13,7 @@ import BlogList from '../pages/blog/BlogList.vue'
 import BlogNew from '../pages/blog/BlogNew.vue'
 
 
+
 const router = new VueRouter({
     mode: 'history',
     // base: 'test',
@@ -31,11 +32,11 @@ const router = new VueRouter({
             name: Blog.name,
             component: Blog,
             children: [
-                { path: '', name: BlogList.name, component: BlogList },
+                { path: '/', name: BlogList.name, component: BlogList },
                 { path: 'blog-new', name: BlogNew.name, component: BlogNew },
                 { path: 'blog-detail/:id', name: BlogDetail.name, component: BlogDetail },
             ]
-        },
+        }
     ]
 })
 

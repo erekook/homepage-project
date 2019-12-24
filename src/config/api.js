@@ -13,8 +13,17 @@ export default {
         return `/api/v1/admin/send-email-code/${email}`
     },
 
-    // get 获取所有博客 post 新增博客
-    fetchAllBlogs: 'api/v1/blog/blogs',
+    // get 获取所有博客 
+    fetchAllBlogs: function(page) {
+        return `api/v1/blog/blogs/${page}`
+    },
+
+    // post 新增博客
+    addNewBlog: 'api/v1/blog/blog-new',
+
+    delBlog: function(id) {
+        return `api/v1/blog/delById/${id}`
+    },
 
     fetchBlogById: function(id) {
         return `api/v1/blog/${id}`
