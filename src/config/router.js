@@ -32,7 +32,7 @@ const router = new VueRouter({
             name: Blog.name,
             component: Blog,
             children: [
-                { path: '/', name: BlogList.name, component: BlogList },
+                { path: ':page', name: BlogList.name, component: BlogList },
                 { path: 'blog-new', name: BlogNew.name, component: BlogNew },
                 { path: 'blog-detail/:id', name: BlogDetail.name, component: BlogDetail },
             ]

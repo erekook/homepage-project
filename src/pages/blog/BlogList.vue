@@ -33,7 +33,7 @@ export default {
     data () {
         return {
             blogs: [],
-            page: 1,
+            page: parseInt(this.$route.params['page']),
             total: 0,
             isMobile: this.$store.getters['common/isMobile']
         }
@@ -47,6 +47,7 @@ export default {
     methods: {
         currentChange (page) {
           this.page = page
+          this.$router.push('/blog/'+ page)
           this.getBlogs()
         },
         getBlogs () {
@@ -62,14 +63,16 @@ export default {
             let _this = this
             if (this.isMobile) {
               MessageBox.confirm('此操作将删除该文章, 是否继续?').then(action => {
-                console.log('action',action)
-                get(api.delBlog(id)).then(() => {
-                  _this.getBlogs()
-                  Toast({
-                    message: '删除成功',
-                    iconClass: 'icon icon-success'
-                  });
-                })
+                if (action == 'confirm') {
+                  get(api.delBlog(id)).then(() => {
+                    _this.getBlogs()
+                    Toast({
+                      message: '删除成功',
+                      iconClass: 'icon icon-success'
+                    });
+                  })
+                }
+
               })
             } else {
               this.$confirm('此操作将删除该文章, 是否继续?', '提示', {
